@@ -1,0 +1,25 @@
+version: '3'
+services:
+  backendend:
+    build: ./backend
+    ports:
+      - "3000:3000"
+    deploy:
+      resources:
+        limits:
+          memory: 2GB
+        reservations:
+          memory: 512M
+    #network_mode: host
+
+  frontendend:
+    build: ./frontend
+    ports:
+      - "4200:4200"
+    deploy:
+      resources:
+        limits:
+          memory: 2GB
+        reservations:
+          memory: 1GB
+    #network_mode: host
