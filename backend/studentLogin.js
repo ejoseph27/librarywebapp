@@ -25,10 +25,10 @@ app.post('/api/login', (req, res) => {
     }
 });
 
-app.post('/api/studentlist', async (req, res) => {
+app.post('/api/addstudentlist', async (req, res) => {
 
     try {
-        //console.log("Request body", req.body);
+        console.log("Request body", req.body);
         // Assuming studentDB.addStudent returns a Promise
         const studentData = await studentDB.addStudent(req.body.name, req.body.postalcode);
         if (typeof studentData === 'object' && studentData !== null) {
@@ -41,7 +41,28 @@ app.post('/api/studentlist', async (req, res) => {
 
     } catch (error) {
         // Handle any errors and send an error response with an appropriate status code
-        res.status(400).json({ error: 'Student already exist' });
+        res.status(500).json({ error: 'Student already exist' });
+    }
+
+});
+
+app.post('/api/addbookslist', async (req, res) => {
+console.log("AddBOOK",req.body);
+    try {
+        //console.log("Request body", req.body);
+        // Assuming studentDB.addStudent returns a Promise
+        const bookData = await studentDB.addBook(req.body.title, req.body.code,req.body.available);
+        if (typeof bookData === 'object' && bookData !== null) {
+            // Success message
+            res.status(200).json({ message: 'Book added successfully', bookData });
+        } else {
+            // Error message
+            res.status(400).json({ error: 'Book already exist', bookData });
+        }
+
+    } catch (error) {
+        // Handle any errors and send an error response with an appropriate status code
+        res.status(500).json({ error: 'Book already exist' });
     }
 
 });

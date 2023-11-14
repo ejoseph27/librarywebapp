@@ -4,6 +4,10 @@
       <div class="title">
         <div *ngIf="books">
           <h1>Books List</h1>
+          <div>
+            <button mat-raised-button class="custom-button" (click)="openAddBookDialog(title, code, available)">Add
+              Book</button>
+          </div>
           <table class="table">
             <thead>
               <tr>
@@ -20,8 +24,8 @@
                 <td>{{ book.code }}</td>
                 <td [style.background-color]="book.available ? 'green' : 'red'"></td>
                 <td>
-                  <button (click)="borrowBook(book.title, book.code, book.available)">+</button>
-                  <button (click)="returnBook(book.title, book.code, book.available)">-</button>
+                  <button (click)="returnBook(book.title, book.code, book.available)">+</button>
+                  <button (click)="borrowBook(book.title, book.code, book.available)">-</button>
                 </td>
                 <!-- Add more table cells for additional data -->
               </tr>
@@ -29,24 +33,27 @@
           </table>
         </div>
         <div *ngIf="students">
-            <h1>Student List</h1>
-            <table class="table">
-              <thead>
-                <tr>
-                  <th>Student Names</th>
-                  <th>Postal ID</th>
-                  <!-- Add more table headers as needed -->
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let student of students">
-                  <td>{{ student.name }}</td>
-                  <td>{{ student.postalCode }}</td>
-                  <!-- Add more table cells for additional data -->
-                </tr>
-              </tbody>
-            </table>
+          <h1>Student List</h1>
+          <div>
+            <button mat-raised-button class="custom-button" (click)="openAddStudentDialog(name, postalcode)">Add Student</button>
           </div>
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Student Names</th>
+                <th>Postal ID</th>
+                <!-- Add more table headers as needed -->
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let student of students">
+                <td>{{ student.name }}</td>
+                <td>{{ student.postalCode }}</td>
+                <!-- Add more table cells for additional data -->
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>

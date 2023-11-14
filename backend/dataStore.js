@@ -28,6 +28,7 @@ class StudentBookDatabase {
         return new Promise((resolve, reject) => {
             // Check if the student already exists
             if (this.students.find((s) => s.name === name && s.postalCode === postalCode)) {
+                console.log("Error");
                 // Student with the same name already exists, reject the Promise with an error message
                 reject(100);
             } else {
@@ -42,13 +43,13 @@ class StudentBookDatabase {
         });
     }
 
-    async addBook(title, bookId) {
+    async addBook(title, code, available) {
         return new Promise((resolve, reject) => {
             if (this.books.find((b) => b.title === title && b.code === bookId)) {
                 reject({ error: 'Book already in the database' });
             }
             else {
-                this.books.push({ title, bookId, avalilable: true });
+                this.books.push({ title, code, available});
                 console.log("Updated books databse", this.books);
                 resolve({ message: 'booked added sucessfully', data: this.books });
             }
@@ -78,7 +79,7 @@ class StudentBookDatabase {
     async returnBook(title, available) {
         console.log('return book func');
         return new Promise((resolve, reject) => {
-            if (this.books.find((b) => b.title === title && b.available === false)) {
+            if (this.books.find((b) => b.title === title && b.available === available)) {
                 const book = this.books.find((b) => b.title === title && b.available === false);
 
                 if (book) {

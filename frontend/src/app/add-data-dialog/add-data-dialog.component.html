@@ -1,0 +1,23 @@
+<h2 mat-dialog-title>{{'Add Book'}}</h2>
+<div mat-dialog-content>
+  <form>
+    <mat-form-field>
+      <input matInput placeholder="'Title'" [(ngModel)]="data.title" name="title" required> 
+     <!--<input matInput placeholder="{{ data.type === 'book' ? 'Title' : (data.type === 'student' ? 'Name' : '') }}" [ngModel]="data.type === 'book' ? data.title : (data.type === 'student' ? data.name : '')" name="{{ data.type === 'book' ? 'title' : (data.type === 'student' ? 'name' : '') }}" required>
+     --> 
+    
+    </mat-form-field>
+    <mat-form-field>
+     <input matInput placeholder="Code" [(ngModel)]="data.code" name="code" required> 
+     <!--<input matInput placeholder="{{ data.type === 'book' ? 'Code' : (data.type === 'student' ? 'Postal Code' : '') }}" [ngModel]="data.type === 'book' ? data.code : (data.type === 'student' ? data.postalcode : '')" name="{{ data.type === 'book' ? 'code' : (data.type === 'student' ? 'postalcode' : '') }}" required>
+            *ngIf="data.type === 'book'"
+    --> 
+    
+    </mat-form-field>
+    <mat-checkbox  [(ngModel)]="data.available" name="available">Available</mat-checkbox>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Add</button>
+</div>

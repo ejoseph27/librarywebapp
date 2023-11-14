@@ -1,0 +1,17 @@
+.mat-raised-button {
+    font-size: 20px; /* Adjust the font size as needed */
+    padding: 15px 24px; /* Adjust the padding as needed */
+  }
+  /* add-data-dialog.component.css */
+mat-dialog-content {
+    font-size: 16px; /* Adjust the font size as needed */
+  }
+  
+  mat-form-field {
+    width: 100%; /* Make the form fields take full width */
+    margin-bottom: 20px; /* Add some bottom margin between form fields */
+  }
+  
+  mat-checkbox {
+    margin-top: 10px; /* Add some top margin to the checkbox */
+  }
