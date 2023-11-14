@@ -1,0 +1,16 @@
+<!-- student-login-dialog.component.html -->
+<h2 mat-dialog-title>{{ 'Login' }}</h2>
+<div mat-dialog-content>
+  <form>
+    <mat-form-field>
+      <input matInput placeholder="Name" [(ngModel)]="data.name" name="name" required>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Postal Code" [(ngModel)]="data.postalcode" name="postalcode" required>
+    </mat-form-field>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Login</button>
+</div>

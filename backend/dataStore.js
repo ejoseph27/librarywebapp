@@ -19,7 +19,9 @@ class StudentBookDatabase {
 
     // Method to validate a student's login
     validateStudentLogin(name, postalCode) {
-        const student = this.students.find((s) => s.name === name && s.postalCode === postalCode);
+        console.log("validate");
+        const student = this.students.find((s) => s.name.trim() === name.trim() && s.postalCode.trim() === postalCode.trim());
+        console.log("student",student);
         return !!student; // Returns true if the student is found, false if not
     }
 

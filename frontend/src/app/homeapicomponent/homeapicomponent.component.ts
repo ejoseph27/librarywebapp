@@ -5,6 +5,8 @@ import { forkJoin } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { AddDataDialogComponent } from '../add-data-dialog/add-data-dialog.component';
 import { AddStudentComponent } from '../add-student/add-student.component';
+import { StudentloginComponent } from '../studentlogin/studentlogin.component';
+
 
 @Component({
   selector: 'app-homeapicomponent',
@@ -18,8 +20,9 @@ export class HomeapicomponentComponent implements OnInit {
   title: string = ''; // Add this property
   code: string = ''; // Add this property
   postalcode: string = ''; // Add this property
-  name:string='';
-  available:boolean= false;
+  name: string = '';
+  available: boolean = false;
+  loggedIn: boolean = false;
   //type:string='';
   constructor(private dataService: DatalistService, private http: HttpClient, public dialog: MatDialog) { }
 
@@ -36,22 +39,22 @@ export class HomeapicomponentComponent implements OnInit {
 
   }
   borrowBook(title: string, code: string, available: boolean): void {
-    available=false;
+    available = false;
     this.http.post('http://localhost:3000/api/borrowbook', { title, code, available }).subscribe((response: any) => {
       if (response.success) {
         const book = this.books.find((b) => b.title === title && b.code === code);
-        console.log("BOOK",book)
+        console.log("BOOK", book)
         book.available = false;
       }
     });
   }
   returnBook(title: string, code: string, available: boolean): void {
-    available=true;
+    available = true;
     this.http.post('http://localhost:3000/api/returnbook', { title, code, available }).subscribe((response: any) => {
       if (response.success) {
         const book = this.books.find((b) => b.title === title && b.code === code);
         book.available = true;
-        console.log("BOOK",book)
+        console.log("BOOK", book)
       }
     });
   }
@@ -59,12 +62,12 @@ export class HomeapicomponentComponent implements OnInit {
   openAddBookDialog(title: string, code: string, available: boolean): void {
     const dialogRef = this.dialog.open(AddDataDialogComponent, {
       width: '250px',
-      data: { type:'book',title: '', code: '', available: true }
+      data: { type: 'book', title: '', code: '', available: true }
     });
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        console.log("Result",result);
+        console.log("Result", result);
         this.http.post('http://localhost:3000/api/addbookslist', { title: result.title, code: result.code, available: result.available })
           .subscribe((response: any) => {
             if (response.success) {
@@ -81,11 +84,11 @@ export class HomeapicomponentComponent implements OnInit {
   openAddStudentDialog(name: string, postalcode: string): void {
     const dialogRef = this.dialog.open(AddStudentComponent, {
       width: '250px',
-      data: { type:'student', name: '', postalcode: ''}
+      data: { type: 'student', name: '', postalcode: '' }
     });
 
     dialogRef.afterClosed().subscribe(result => {
-     //if the dialogbox have values in the placeholders it is send as a post request
+      //if the dialogbox have values in the placeholders it is send as a post request
       if (result) {
         this.http.post('http://localhost:3000/api/addstudentlist', { name: result.name, postalcode: result.postalcode })
           .subscribe((response: any) => {
@@ -98,10 +101,40 @@ export class HomeapicomponentComponent implements OnInit {
             }
           });
         // Add the new student to your book list
-      
+
       }
     });
   }
+
+  openStudentLogin(name: string, postalcode: string): void {
+    const dialogRef = this.dialog.open(StudentloginComponent, {
+      width: '250px',
+      data: { name, postalcode },
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      // Handle the result if needed
+      console.log(result);
+      if (result) {
+        this.http.post('http://localhost:3000/api/login', { name: result.name, postalCode: result.postalcode })
+          .subscribe((response: any) => {
+            console.log("respose", response)
+            if (response.valid) {
+              this.loggedIn = true;
+              console.log("Login Sucess");
+            }
+            else {
+              this.loggedIn = false;
+              console.log("Login Failed");
+            }
+
+          });
+        // Add the new student to your book list
+
+      }
+    });
+  }
+
 
 
 
