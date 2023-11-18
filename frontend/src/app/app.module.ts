@@ -13,13 +13,15 @@ import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { AddStudentComponent } from './add-student/add-student.component';
-
+import { StudentloginComponent } from './studentlogin/studentlogin.component';
+import { MatIconModule } from '@angular/material/icon';
 @NgModule({
   declarations: [
     AppComponent,
     HomeapicomponentComponent,
     AddDataDialogComponent,
     AddStudentComponent,
+    StudentloginComponent,
   ],
   imports: [
     BrowserModule,
@@ -32,6 +34,7 @@ import { AddStudentComponent } from './add-student/add-student.component';
     MatInputModule,
     MatDialogModule,
     MatCheckboxModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]

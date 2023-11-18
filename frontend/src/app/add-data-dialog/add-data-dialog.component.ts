@@ -12,6 +12,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 export class AddDataDialogComponent {
   //data: any = { type: '', title: '', code: '', available: false, name: '', postalcode: '' };
   data: any= {type:'', title: '', code: '', available: false };
+  loggedIn: boolean = false;
   //student= {name:'', postalcode:''}
   constructor(
     public dialogRef: MatDialogRef<AddDataDialogComponent>,
