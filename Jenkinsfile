@@ -20,7 +20,7 @@ pipeline {
                     // Change to frontend directory
                     // Add commands to build your Angular app
                     sh 'npm install -g npm'
-                    sh 'ng build --prod'
+                    sh '/usr/local/bin/ng build --prod'
                 }
             }
         }
