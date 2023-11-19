@@ -10,10 +10,10 @@ pipeline {
         }
         
         stage('Build and Test Frontend') {
+
             tools {
                 nodejs 'NodeJS' // Use the Node.js tool configured in Jenkins
             }
-
             steps {
                 dir('frontend') {
                     // Change to frontend directory
