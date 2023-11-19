@@ -27,7 +27,7 @@ pipeline {
                     sh 'npm install -g @angular/cli'
             
                     // Build Angular app
-                    sh 'ng build --prod'
+                    sh 'ng build '
                 }
             }
         }
