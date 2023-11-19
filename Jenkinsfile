@@ -22,12 +22,14 @@ pipeline {
                     // Print NodeJS and npm versions for debugging
                     sh 'node -v'
                     sh 'npm -v'
-            
                     // Install Angular CLI globally
                     sh 'npm install -g @angular/cli@16.2.9'
                     // Install dependencies including @angular-devkit/build-angular
                     sh 'npm install --save-dev @angular-devkit/build-angular@16.2.9'
-                    
+                    // Update npm
+                    sh 'npm install -g npm@latest'
+                    // Clear npm cache
+                    sh 'npm cache clean -f'
                     sh 'npm install'
 
             
