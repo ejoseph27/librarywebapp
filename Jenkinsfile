@@ -1,5 +1,5 @@
 pipeline {
-    agent Jenkins
+    agent any
     
     stages {
         stage('Checkout') {
@@ -9,31 +9,51 @@ pipeline {
             }
         }
         
-        stage('Build') {
+        stage('Build and Test Frontend') {
+            tools {
+                nodejs 'NodeJS' // Use the Node.js tool configured in Jenkins
+            }
+
             steps {
-                // Add build commands or scripts here
+                dir('frontend') {
+                    // Change to frontend directory
+                    // Add commands to build your Angular app
+                    sh 'npm install'
+                    sh 'ng build --prod'
+                }
             }
         }
         
-        stage('Test') {
+        stage('Build and Test Backend') {
             steps {
-                // Add test commands or scripts here
+                dir('backend') {
+                    // Change to backend directory
+                    // Add commands to build your Node.js app and run tests
+                    sh 'npm install'
+                    sh 'npm test'
+                }
             }
         }
         
-        stage('Deploy') {
+        stage('Docker Compose Up') {
             steps {
-                // Add deployment commands or scripts here
+                // Run Docker Compose to build and start containers
+                sh 'docker-compose up -d --build'
             }
         }
+        
     }
     
     post {
         success {
             // Actions to perform when the build is successful
+            // For example, clean up or notify someone
+            echo 'Build and test successful!'
         }
         failure {
             // Actions to perform when the build fails
+            // For example, notify someone or take corrective action
+            echo 'Build and test failed!'
         }
     }
 }
