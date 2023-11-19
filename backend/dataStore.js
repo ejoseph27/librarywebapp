@@ -18,6 +18,7 @@ class StudentBookDatabase {
     }
 
     // Method to validate a student's login
+
     validateStudentLogin(name, postalCode) {
         const student = this.students.find((s) => s.name === name && s.postalCode === postalCode);
         return !!student; // Returns true if the student is found, false if not
@@ -36,7 +37,7 @@ class StudentBookDatabase {
                 this.students.push({ name, postalCode });
                 console.log("Updates", this.students);
                 resolve({
-                    messsage: "Student added successfully",
+                    message: "Student added successfully",
                     data: this.students
                 });
             }
@@ -45,8 +46,8 @@ class StudentBookDatabase {
 
     async addBook(title, code, available) {
         return new Promise((resolve, reject) => {
-            if (this.books.find((b) => b.title === title && b.code === bookId)) {
-                reject({ error: 'Book already in the database' });
+            if (this.books.find((b) => b.title === title && b.code === code)) {
+                reject(100);
             }
             else {
                 this.books.push({ title, code, available});
