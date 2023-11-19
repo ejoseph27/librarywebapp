@@ -15,10 +15,11 @@ pipeline {
                 nodejs 'NodeJS' // Use the Node.js tool configured in Jenkins
             }
             steps {
+                sh 'env'
                 dir('frontend') {
                     // Change to frontend directory
                     // Add commands to build your Angular app
-                    sh 'npm install'
+                    sh 'npm install -g npm'
                     sh 'ng build --prod'
                 }
             }
