@@ -19,8 +19,15 @@ pipeline {
                 dir('frontend') {
                     // Change to frontend directory
                     // Add commands to build your Angular app
-                    sh 'npm install -g npm'
-                    sh '/usr/local/bin/ng build --prod'
+                    // Print NodeJS and npm versions for debugging
+                    sh 'node -v'
+                    sh 'npm -v'
+            
+                    // Install Angular CLI globally
+                    sh 'npm install -g @angular/cli'
+            
+                    // Build Angular app
+                    sh 'ng build --prod'
                 }
             }
         }
