@@ -20,24 +20,23 @@ pipeline {
                     // Change to frontend directory
                     // Add commands to build your Angular app
                     // Print NodeJS and npm versions for debugging
-                    sh 'node -v'
-                    sh 'npm -v'
                     sh 'pwd'
                     sh ' echo PATH'
                     // Install Angular CLI globally
-                    sh 'npm install -g @angular/cli@16.2.9'
+                    //sh 'npm install -g @angular/cli@16.2.9'
                     // Install dependencies including @angular-devkit/build-angular
-                    sh 'npm install --save @angular-devkit/build-angular@16.2.9'
+                    //sh 'npm install --save @angular-devkit/build-angular@16.2.9'
                     // Update npm
-                    sh 'npm install -g npm@latest'
+                    //sh 'npm install -g npm@latest'
                     // Clear npm cache
                     //sh 'npm cache clean -f'
                     sh 'npm install'
-
+                    sh 'ls node_modules'
+                    sh ' echo NodeModules'
 
             
                     // Build Angular app
-                    sh 'ng build '
+                    sh 'ng build --verbose'
                 }
             }
         }
