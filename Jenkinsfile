@@ -23,7 +23,7 @@ pipeline {
                     sh 'pwd'
                     sh ' echo PATH'
                     // Install Angular CLI globally
-                    //sh 'npm install -g @angular/cli@16.2.9'
+                    sh 'npm install -g @angular/cli@16.2.9'
                     // Install dependencies including @angular-devkit/build-angular
                     //sh 'npm install --save @angular-devkit/build-angular@16.2.9'
                     // Update npm
