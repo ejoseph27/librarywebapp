@@ -20,8 +20,8 @@ pipeline {
                     // Change to frontend directory
                     // Add commands to build your Angular app
                     // Print NodeJS and npm versions for debugging
-                    sh 'pwd'
-                    sh ' echo PATH'
+                    //sh 'pwd'
+                    //sh ' echo PATH'
                     // Install Angular CLI globally
                     sh 'npm install -g @angular/cli@16.2.9'
                     // Install dependencies including @angular-devkit/build-angular
@@ -46,6 +46,8 @@ pipeline {
                 dir('backend') {
                     // Change to backend directory
                     // Add commands to build your Node.js app and run tests
+                    sh 'pwd'
+                    sh ' echo PATH'
                     sh 'npm install'
                     sh 'npm test'
                 }
