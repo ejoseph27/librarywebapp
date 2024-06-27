@@ -7,7 +7,7 @@ services:
     deploy:
       resources:
         limits:
-          memory: 2GB
+          memory: 1GB
         reservations:
           memory: 512M
     #network_mode: host
@@ -15,11 +15,11 @@ services:
   frontendend:
     build: ./frontend
     ports:
-      - "4200:4200"
+      - "80:80"
     deploy:
       resources:
         limits:
-          memory: 2GB
-        reservations:
           memory: 1GB
+        reservations:
+          memory: 512M
     #network_mode: host
