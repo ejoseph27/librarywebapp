@@ -1,5 +1,5 @@
 # Use an official Node.js runtime as the base image
-FROM node:latest
+FROM node:lts-alpine3.19
 
 # Set the working directory
 WORKDIR /app
